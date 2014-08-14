@@ -17,9 +17,13 @@
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (Card *)cardAtIndex:(NSInteger)index;
 - (void)threeCardchooseCardAtIndex:(NSUInteger)index;
+- (void)setCardMatchAtIndex:(NSUInteger)index;
 
 @property (nonatomic, readonly) NSInteger score;
+@property (nonatomic) NSInteger matchScore;
 @property (nonatomic) NSInteger gameStarted;
 @property (nonatomic, weak) NSString *gameMode;
 @property (nonatomic, strong) NSMutableString *resultText;
+@property (nonatomic) NSMutableArray *resultArray;
+@property (nonatomic, strong) NSMutableString *historyResultText;
 @end

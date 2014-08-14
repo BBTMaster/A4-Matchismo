@@ -9,6 +9,7 @@
 #import "CardGameViewController.h"
 #import "Deck.h"
 #import "CardMatchingGame.h"
+#import "HistoryViewController.h"
 
 
 @interface CardGameViewController ()
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIButton *redealButton;
 @property (weak, nonatomic) IBOutlet UILabel *resultTextLabel;
+//@property (nonatomic) NSMutableAttributedString *historyAttributedString;
 
 @end
 
@@ -45,6 +47,23 @@
 - (Deck *)createDeck{
     return nil;
 }
+
+/*
+- (NSMutableAttributedString *)historyAttributedString{
+    if (!_historyAttributedString)
+        _historyAttributedString = [[NSMutableAttributedString alloc] init];
+    return _historyAttributedString;
+}*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"PlayingCardGameSegue"]){
+        if ([segue.destinationViewController isKindOfClass:[HistoryViewController class]]){
+            HistoryViewController *hvc = (HistoryViewController *)segue.destinationViewController;
+            hvc.historyResultText = self.game.historyResultText;
+        }
+    }
+}
+
 
 - (IBAction)touchCardButton:(UIButton *)sender {
     

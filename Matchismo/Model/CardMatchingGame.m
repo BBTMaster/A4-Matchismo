@@ -25,6 +25,11 @@
     return _resultText;
 }
 
+- (NSMutableString *)historyResultText{
+    if (!_historyResultText) _historyResultText = [[NSMutableString alloc] initWithString:@""];
+    return _historyResultText;
+}
+
 - (instancetype)initWithCardCount:(NSUInteger)count
                         usingDeck:(Deck *)deck{
     self = [super init];
@@ -76,6 +81,9 @@ static const int COST_TO_CHOOSE = 1;
                         self.score -= MISMATCH_PENALTY;
                         otherCard.chosen = NO;
                     }
+                    NSMutableString *linebreak = [[NSMutableString alloc] initWithString:@"\n"];
+                    [self.resultText appendString:linebreak];
+                    [self.historyResultText appendString:self.resultText];
                     break;
                 }
             }
@@ -135,11 +143,80 @@ static const int COST_TO_CHOOSE = 1;
                     self.resultText = [NSMutableString stringWithFormat:@"%@ %@ %@ don't match! %d points penalty!",
                                        [[cardsArray firstObject] contents],[[cardsArray objectAtIndex:1] contents], card.contents, MISMATCH_PENALTY];
                 }
+                NSMutableString *linebreak = [[NSMutableString alloc] initWithString:@"\n"];
+                [self.resultText appendString:linebreak];
+                [self.historyResultText appendString:self.resultText];
             }
             self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
         }
         
+    }
+    
+}
+
+
+- (void)setCardMatchAtIndex:(NSUInteger)index{
+    Card *card = [self cardAtIndex:index];
+
+    if(!card.isMatched){
+        NSMutableArray *cardsArray = [[NSMutableArray alloc] init];
+        //[cardsArray addObject:card];
+        if (card.chosen){
+            card.chosen = NO;
+            for (Card *otherCard in self.cards){
+                if (otherCard.isChosen && !otherCard.isMatched)
+                    [cardsArray addObject:otherCard];
+            }
+            if ([cardsArray count] == 0){
+                self.resultText = [NSMutableString stringWithString:@""];
+            }
+            else{
+                self.resultText = [NSMutableString stringWithFormat:@"%@", [[cardsArray firstObject] contents]];
+            }
+
+        } else{
+            //NSMutableArray *cardsArray = [[NSMutableArray alloc] init];
+            [cardsArray addObject:card];
+            for (Card *otherCard in self.cards){
+                if (otherCard.isChosen && !otherCard.isMatched)
+                    [cardsArray addObject:otherCard];
+            }
+            
+            if ([cardsArray count] == 0){
+                self.resultText = [NSMutableString stringWithFormat:@"%@", card.contents];
+            }
+            else if ([cardsArray count] == 1)
+                self.resultText = [NSMutableString stringWithFormat:@"%@ %@", [[cardsArray firstObject] contents],
+                                   card.contents];
+            
+            if ([cardsArray count] == 3){
+                //NSLog(@"3rd card is pressed!");
+                NSMutableArray *tempArray = [NSMutableArray arrayWithArray:cardsArray];
+                [tempArray removeObject:card];
+                int matchScore = [card match:tempArray];
+                if (matchScore){
+                    self.score += matchScore;
+                    for (Card *otherCards in tempArray){
+                        otherCards.matched = YES;
+                    }
+                    card.matched = YES;
+                    self.resultText = [NSMutableString stringWithFormat:@"Matched %@ %@ %@ for %d points",
+                                       [[cardsArray firstObject] contents],[[cardsArray objectAtIndex:1] contents], card.contents, matchScore];
+                }else{
+                    self.score -= MISMATCH_PENALTY;
+                    for (Card *otherCards in tempArray){
+                        otherCards.chosen = NO;
+                    }
+                    self.resultText = [NSMutableString stringWithFormat:@"%@ %@ %@ don't match! %d points penalty!",
+                                       [[cardsArray firstObject] contents],[[cardsArray objectAtIndex:1] contents], card.contents, MISMATCH_PENALTY];
+                }
+                self.matchScore = matchScore;
+            }
+            //self.score -= COST_TO_CHOOSE;
+            card.chosen = YES;
+        }
+        self.resultArray = cardsArray;
     }
     
 }
