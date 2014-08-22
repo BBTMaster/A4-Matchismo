@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>50AF4401-1527-43B3-BC96-C100D752FE19</string>
+	<string>85D46130-477C-4A92-B6A7-B6E77DCEABF9</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Matchismo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>057DD83F-0510-45AC-A84B-E23A3DB83F6B</key>
-		<string>https://github.com/BBTMaster/Matchismo.git</string>
+		<key>ADD06749-AE7B-4743-B11A-94D85331FC8C</key>
+		<string>https://github.com/BBTMaster/A4-Matchismo.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Matchismo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>057DD83F-0510-45AC-A84B-E23A3DB83F6B</key>
+		<key>ADD06749-AE7B-4743-B11A-94D85331FC8C</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/BBTMaster/Matchismo.git</string>
+	<string>https://github.com/BBTMaster/A4-Matchismo.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>057DD83F-0510-45AC-A84B-E23A3DB83F6B</string>
+	<string>ADD06749-AE7B-4743-B11A-94D85331FC8C</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>057DD83F-0510-45AC-A84B-E23A3DB83F6B</string>
+			<string>ADD06749-AE7B-4743-B11A-94D85331FC8C</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Matchismo</string>
+			<string>A4-Matchismo</string>
 		</dict>
 	</array>
 </dict>

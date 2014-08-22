@@ -49,11 +49,11 @@
 }
 
 /*
-- (NSMutableAttributedString *)historyAttributedString{
-    if (!_historyAttributedString)
-        _historyAttributedString = [[NSMutableAttributedString alloc] init];
-    return _historyAttributedString;
-}*/
+ - (NSMutableAttributedString *)historyAttributedString{
+ if (!_historyAttributedString)
+ _historyAttributedString = [[NSMutableAttributedString alloc] init];
+ return _historyAttributedString;
+ }*/
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"PlayingCardGameSegue"]){
@@ -78,7 +78,7 @@
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     //NSLog(@"%@", self.game.gameMode);
     if ([self.game.gameMode isEqualToString: @"2-Card-Mode"])
-         [self.game chooseCardAtIndex:chosenButtonIndex];
+        [self.game chooseCardAtIndex:chosenButtonIndex];
     else if([self.game.gameMode isEqualToString:@"3-Card-Mode"])
         [self.game threeCardchooseCardAtIndex:chosenButtonIndex];
     
